@@ -1,7 +1,7 @@
 <template>
     <input class="validate"
            type="text"
-           :length="length"
+           :data-length="length"
            :value="value"
            @input="$emit('input', $event.target.value)"
     >
