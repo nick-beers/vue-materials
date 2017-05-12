@@ -6,7 +6,6 @@
 
 > Vue 2.0 and Materialize.css Components
 
-
 ## Build Setup
 
 ``` bash
@@ -18,3 +17,29 @@ import Vue from 'vue'
 import Materials from 'vue-materials'
 
 Vue.use(Materials)
+```
+
+## Testing Changes
+To test changes to this package add a `/dev ` folder under the root directory and load the plugin from the `/src`, then mount a Vue instance to the app like in the example below.
+
+``` bash
+# index.js
+import Vue from 'vue'
+import App from './App.vue'
+
+import MVueComponents from '../src'
+
+Vue.use(MVueComponents);
+
+# Mount Vue App Below
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+```
+
+Then run the following command to boot webpack
+``` bash
+# run
+npm run dev
+```
