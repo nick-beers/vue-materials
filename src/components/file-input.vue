@@ -7,7 +7,7 @@
             >
         </div>
         <div class="file-path-wrapper">
-            <v-text-input class="file-path validate"></v-text-input>
+            <m-text-input class="file-path validate"></m-text-input>
         </div>
     </div>
 </template>

@@ -1,11 +1,11 @@
 <template>
     <ul class="pagination">
-        <v-pagination-item :disabled="value === 1"
+        <m-pagination-item :disabled="value === 1"
                          @click="prev"
         >
-            <i class="material-icons">chevron_left</i>
-        </v-pagination-item>
-        <v-pagination-item v-if="length > 0"
+            <m-icon>chevron_left</m-icon>
+        </m-pagination-item>
+        <m-pagination-item v-if="length > 0"
                          v-for="n in length"
                          :active="value === n"
                          :waves="waves"
@@ -13,12 +13,12 @@
                          @click="page(n)"
         >
             {{ n }}
-        </v-pagination-item>
-        <v-pagination-item :disabled="value === length"
+        </m-pagination-item>
+        <m-pagination-item :disabled="value === length"
                          @click="next"
         >
-            <i class="material-icons">chevron_right</i>
-        </v-pagination-item>
+            <m-icon>chevron_right</m-icon>
+        </m-pagination-item>
     </ul>
 </template>
 

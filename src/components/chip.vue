@@ -3,7 +3,7 @@
          v-if="!remove"
     >
         <slot></slot>
-        <v-icon v-if="close">close</v-icon>
+        <m-icon v-if="close">close</m-icon>
     </div>
 </template>
 
