@@ -1,15 +1,15 @@
-import VRow from './row'
-import VGrid from './grid'
-import VContainer from './container'
-import VCollapsibleHeader from './collapsible-header'
-import VCollapsibleBody from './collapsible-body'
-import VDropdown from './dropdown'
+import MRow from './row'
+import MGrid from './grid'
+import MContainer from './container'
+import MCollapsibleHeader from './collapsible-header'
+import MCollapsibleBody from './collapsible-body'
+import MDropdown from './dropdown'
 
 export default {
-    VRow,
-    VGrid,
-    VContainer,
-    VCollapsibleHeader,
-    VCollapsibleBody,
-    VDropdown
+    MRow,
+    MGrid,
+    MContainer,
+    MCollapsibleHeader,
+    MCollapsibleBody,
+    MDropdown
 }
