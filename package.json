@@ -4,10 +4,11 @@
   "author": "John Leider <john.j.leider@gmail.com>",
   "contributors": [
     {
-     "name": "Nick Beers", "email": "nicholas.beers@gmail.com"
+      "name": "Nick Beers",
+      "email": "nicholas.beers@gmail.com"
     }
   ],
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": false,
   "main": "dist/vue-materials.min.js",
   "license": "MIT",
