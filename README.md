@@ -10,11 +10,11 @@
 
 ``` bash
 # install
-npm install vue-materials
+npm install @edge_blade/vue-materials
 
 # import and use the plugin
 import Vue from 'vue'
-import Materials from 'vue-materials'
+import Materials from '@edge_blade/vue-materials'
 
 Vue.use(Materials)
 ```
