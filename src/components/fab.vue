@@ -27,6 +27,10 @@
             toggle: {
                 type: Boolean,
                 default: false
+                        },
+            toolbar: {
+                type: Boolean,
+                defaut: false
             }
         },
 
@@ -34,7 +38,8 @@
             classes () {
                 return {
                     'click-to-toggle': this.toggle,
-                    'horizontal': this.horizontal
+                    'horizontal': this.horizontal,
+                    'toolbar': this.toolbar
                 }
             }
         },
