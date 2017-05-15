@@ -7,6 +7,12 @@
       "name": "Nick Beers",
       "email": "nicholas.beers@gmail.com"
     }
+  ],  
+  "homepage": "https://github.com/nick-beers/vue-materials",
+  "keywords": [
+    "vue",
+    "material",
+    "materialize",
   ],
   "version": "1.1.2",
   "private": false,
