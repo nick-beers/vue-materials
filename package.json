@@ -14,7 +14,7 @@
     "material",
     "materialize"
   ],
-  "version": "1.1.3",
+  "version": "1.1.4",
   "private": false,
   "main": "dist/vue-materials.min.js",
   "license": "MIT",
