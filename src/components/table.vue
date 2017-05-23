@@ -2,9 +2,9 @@
 <div class="m-table-container">
 	<table :class="classes">
 		<m-table-header :columns="columns" :sortedColumns="sortOrder" @changeSortOrder="updateColumnOrder"></m-table-header>
-		<tbody v-if="tableData.length > 0">
-			<m-table-row v-for="rowData in orderedData" :rowData="rowData" :columns="columns"></m-table-row>
-		</tbody>
+		<transition-group v-if="tableData.length > 0" name="slide" tag="tbody">
+			<m-table-row v-for="rowData in orderedData" :rowData="rowData" :columns="columns" v-bind:key="rowData[rowKey]"></m-table-row>
+		</transition-group>
 		<tfoot v-else>
 			<tr><td :colspan="orderedData.length">No results available.</td></tr>
 		</tfoot>
@@ -43,6 +43,10 @@ export default {
 				*/
 				return [];
 			}
+		},
+		rowKey: {
+			type: String,
+			required: true
 		},
 		tableData: {
 			type: Array,
@@ -150,4 +154,19 @@ export default {
 .m-table-container table { 
 	table-layout: fixed;
 }
+
+.slide-enter-active {
+  	transition: all .35s ease;
+}
+
+.slide-leave-active {
+  	transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  	display: none;
+}
+
+.slide-enter, .slide-leave-to {
+  	transform: translateX(20px);
+  	opacity: 0;
+}
+
 </style>

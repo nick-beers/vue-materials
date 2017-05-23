@@ -1,6 +1,13 @@
 <template>
 	<div class="table-tools-bottom">
-		<div class="paging right">
+		<div class="table-paging">
+			<div class="results-per-page-label">Rows per page:</div>
+			<div class="results-per-page">
+				<m-select :items="itemsPerPageOptions" v-model="itemsPerPage"></m-select>
+			</div>
+		</div>
+		<div class="results">{{ resultsText }}</div>
+		<div class="paging">
 			<div class="page-button" @click.prevent="pageLeft">
 				<m-btn wavesLight floating flat :class="{ disabled: !canPageLeft }"><m-icon>chevron_left</m-icon></m-btn>
 			</div>
@@ -8,14 +15,6 @@
 				<m-btn wavesLight floating flat :class="{ disabled: !canPageRight }"><m-icon>chevron_right</m-icon></m-btn>
 			</div>
 		</div>
-		<div class="results right">{{ resultsText }}</div>
-		<div class="right">
-			<div class="results-per-page-label left">Rows per page:</div>
-			<div class="results-per-page left">
-				<m-select :items="itemsPerPageOptions" v-model="itemsPerPage"></m-select>
-			</div>
-		</div>
-
 	</div>
 </template>
 
@@ -86,11 +85,13 @@ export default {
 <style lang="scss">
 .table-tools-bottom {
 	color: rgba(0,0,0,0.54);
+	text-align: right;
+	vertical-align: top;
 
 	.results-per-page {
 	    display: inline-block;
-	    margin: 7px 15px;
-
+	    margin: 7px 15px 0 15px;
+	    vertical-align: inherit;
 
 	    span.caret {
 	    	color: rgba(0,0,0,0.54);
@@ -104,17 +105,26 @@ export default {
 	    	border-bottom: none;
 	    }
 	}
+
+	.table-paging {
+		display: inline-block;
+	    vertical-align: inherit;
+	}
+
 	.results-per-page-label {
 	    display: inline-block;
 	    margin: 10% 0;
+	    vertical-align: inherit;
 	}
 	.results {
 	    display: inline-block;
 	    margin: 18.5px 15px;
+	    vertical-align: inherit;
 	}
 	.paging {
 	    display: inline-block;
 	    margin: 10px 0;
+	    vertical-align: inherit;
 
 	    .page-button {
 	    	display: inline-block;
