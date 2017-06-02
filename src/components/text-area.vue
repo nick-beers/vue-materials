@@ -2,8 +2,8 @@
     <textarea class="materialize-textarea"
               :data-length="length"
               @input="$emit('input', $event.target.value)"
+              :value="value"
     >
-        <slot></slot>
     </textarea>
 </template>
 
@@ -11,6 +11,7 @@
     import Counter from '../mixins/counter'
 
     export default {
+        props: ['value'],
         mixins: [
             Counter
         ]
