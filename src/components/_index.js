@@ -37,6 +37,7 @@ import MTabs from './tabs.vue'
 import MTextArea from './text-area.vue'
 import MTextInput from './text-input.vue'
 import MTable from './table.vue'
+import MTapTarget from './tap-target.vue'
 
 export default {
     MFooter,
@@ -77,5 +78,6 @@ export default {
     MTabs,
     MTextArea,
     MTextInput,
-    MTable
+    MTable,
+    MTapTarget
 }
