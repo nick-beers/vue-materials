@@ -7,14 +7,24 @@
 			:sortedColumns="sortOrder" 
 			:selectAll="currentPageAllSelected"
 			@change-sort-order="changeSortOrder" 
-			@select-all="selectAll"></m-table-header>
+			@select-all="selectAll">
+		</m-table-header>
 		<m-table-body 
 			:rowData="pagedData" 
 			:columns="columns" 
 			:options="calculatedOptions" 
 			:selectedRows="selectedRowKeys"
-			@select-row="selectRow"></m-table-body>
+			@select-row="selectRow">
+		</m-table-body>
 	</table>
+	<m-table-tools-bottom	
+		:itemCount="tableData.length"
+		:pageIndex="pageIndex"
+		:maxPageIndex="maxPages"
+		:options="calculatedOptions"
+		@changePerPage="updatePerPage"
+		@jumpToPage="updatePageIndex">
+	</m-table-tools-bottom>
 </div>
 </template>
 
@@ -25,11 +35,13 @@ import { SortDataInArray } from '../util/array-helpers';
 // table part components
 import MTableHeader from './tablePartsNew/table-header.vue';
 import MTableBody from './tablePartsNew/table-body.vue';
+import MTableToolsBottom from './tablePartsNew/table-tools-bottom.vue';
 
 export default {
 	components: {
 		MTableHeader,
-		MTableBody
+		MTableBody,
+		MTableToolsBottom
 	},
 	props: {
 		// OptionProps
@@ -100,7 +112,7 @@ export default {
 			return {
 					rowKey: this.options.id || 'id',
 					paging: this.options.paging || false,
-					itemsPerPage: this.options.pageDefault || this.options.pagingOptions[0],
+					itemsPerPage: this.itemsPerPage,
 					pagingOptions: this.options.pagingOptions || [5,10,25,50],
 					sortable: this.options.sortable || true,
 					selectable: this.options.selectable || false
@@ -192,6 +204,12 @@ export default {
 			} else {
 				this.sortOrder = [ sortKey ]
 			}
+		}
+	},
+	mounted(){
+		if(this.options.pagingDefault && this.options.pagingOptions.indexOf(this.options.pagingDefault) == -1){
+			// if paging is specified and pagingOptions does not contain it, default to first
+			this.itemsPerPage = this.calculatedOptions.pagingOptions[0];
 		}
 	}
 }
