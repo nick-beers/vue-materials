@@ -1,10 +1,10 @@
 <template>
 	<thead>
 		<tr class="table-header-row">
-			<th v-if="options.selectable">
-				<m-checkbox name="select-all" @input="selectAll()"></m-checkbox>
+			<th v-if="options.selectable" class="column-header-select">
+				<m-checkbox :value="selectAll" name="select-all" @input="selectAllCheck"></m-checkbox>
 			</th>
-			<th v-for="column in columns" :key="column" @click="sortBy(column, $event)">
+			<th class="column-header" v-for="column in columns" :key="column" @click="sortBy(column, $event)">
 				<m-icon v-if="options.sortable" tiny>{{sortedDir(column)}}</m-icon>
 				<span>{{column | capitalize}}</span>
 			</th>
@@ -30,6 +30,10 @@ export default {
 		options: {
 			type: Object,
 			required: true
+		},
+		selectAll: {
+			type: Boolean,
+			default: false
 		}
 	},
 	filters: {
@@ -39,15 +43,13 @@ export default {
 	},
 	methods: {
 		sortedDir(key) {
-			let sortDir = this.sortedColumns.filter((sortData) => {
-				return sortData.key == key;
-			});
-			if(sortDir.length <= 0)
+			let sortDir = this.sortedColumns.find(sortData => sortData.key == key);
+			if(!sortDir)
 				return 'swap_vert';
-			return (sortDir) ? 'arrow_upward' : 'arrow_downward';
+			return (sortDir.ascending) ? 'arrow_upward' : 'arrow_downward';
 		},
-		selectAll(){
-			this.$emit('select-all')
+		selectAllCheck(){
+			this.$emit('select-all', !this.selectAll)
 		},
 		sortBy(key, event) {
 			if(!this.options.selectable){
@@ -63,6 +65,10 @@ export default {
 tr.table-header-row {
 	p {
 		margin: 0;
+	}
+	.column-header-select {
+		width: 50px;
+		padding-bottom: 5px;
 	}
 	.column-not-sorted {
 		font-size: 14px;

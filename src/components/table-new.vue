@@ -2,20 +2,18 @@
 <div class="m-table-container">
 	<table :class="classes">
 		<m-table-header 
-			:options="options" 
+			:options="calculatedOptions" 
 			:columns="columns" 
 			:sortedColumns="sortOrder" 
+			:selectAll="currentPageAllSelected"
 			@change-sort-order="changeSortOrder" 
 			@select-all="selectAll"></m-table-header>
 		<m-table-body 
-			:rowData="orderedData" 
+			:rowData="pagedData" 
 			:columns="columns" 
-			:options="options" 
+			:options="calculatedOptions" 
 			:selectedRows="selectedRowKeys"
 			@select-row="selectRow"></m-table-body>
-		<tfoot>
-			
-		</tfoot>
 	</table>
 </div>
 </template>
@@ -98,28 +96,74 @@ export default {
 				'responsive-table': this.responsive
 			};
 		},
-		orderedData() {
-			if(!this.options.paging) {
-				return this.tableData;
+		calculatedOptions(){
+			return {
+					rowKey: this.options.id || 'id',
+					paging: this.options.paging || false,
+					itemsPerPage: this.options.pageDefault || this.options.pagingOptions[0],
+					pagingOptions: this.options.pagingOptions || [5,10,25,50],
+					sortable: this.options.sortable || true,
+					selectable: this.options.selectable || false
+				};
+		},
+		pagedData() {
+			if(!this.calculatedOptions.paging) {
+				return SortDataInArray(this.tableData, this.sortOrder);
 			} else {
-				let startingPoint = this.pageIndex * this.itemsPerPage;
-				let endPoint = startingPoint + this.itemsPerPage;
+				let startingPoint = this.pageIndex * this.calculatedOptions.itemsPerPage;
+				let endPoint = startingPoint + this.calculatedOptions.itemsPerPage;
 
 				//apply column ordering
-				if(this.sortOrder.length == 0){
-					return this.tableData.slice(startingPoint, endPoint);
-				} else {
-					return SortDataInArray(this.tableData, this.sortOrder).slice(startingPoint, endPoint)
-				}
+				return SortDataInArray(this.tableData, this.sortOrder).slice(startingPoint, endPoint)
 			}
 		},
 		maxPages() {
-			return Math.ceil(this.tableData.length / parseInt(this.itemsPerPage));
+			return Math.ceil(this.tableData.length / parseInt(this.calculatedOptions.itemsPerPage));
 		},
+		idsOnCurrentPage(){
+			return this.pagedData.map((data) => {
+				return data[this.calculatedOptions.rowKey];
+			});
+		},
+		currentPageAllSelected(){
+			return this.selectedRowKeys.filter((selectedId) => {
+				return this.idsOnCurrentPage.indexOf(selectedId) > -1;
+			}).length == this.idsOnCurrentPage.length;
+		}
+	},
+	watch: {
+		selectedRowKeys(value) {
+			this.$emit('selected-update', value)
+		}
 	},
 	methods: {
-		selectAll() {
-			console.log("select-all caught!")
+		updatePageIndex(newPageIndex){
+			this.pageIndex = newPageIndex;
+		},
+		updatePerPage(count){
+			this.itemsPerPage = parseInt(count);
+			if(this.pageIndex > this.maxPages -1) {
+				this.updatePageIndex(this.maxPages - 1);
+			}
+		},
+		selectAll(value) {
+			if(value == true) {
+				// if selectAll is true, add IDs that are missing from current page
+				let idsToAdd = this.idsOnCurrentPage.filter((selectedId) => {
+					return !this.selectedRowKeys.includes(selectedId);
+				});
+
+				this.selectedRowKeys.push.apply(this.selectedRowKeys, idsToAdd);
+			} else {
+				// if selectAll is false, Remove IDs that are currently selected
+				let idsAlreadyContained = this.selectedRowKeys.filter((selectedId) => {
+					return this.idsOnCurrentPage.indexOf(selectedId) > -1;
+				});
+
+				this.selectedRowKeys = this.selectedRowKeys.filter((key) => {
+					return !idsAlreadyContained.includes(key);
+				});
+			}
 		},
 		selectRow(key){
 			let selectedIndex = this.selectedRowKeys.indexOf(key);
@@ -131,31 +175,22 @@ export default {
 		},
 		changeSortOrder(key, multiHeaderSort) {
 
+			let existingSortKey = this.sortOrder.find( x => x.key == key);
+
 			let sortKey = {
 				key: key,
-				ascending: multiHeaderSort
+				ascending: (existingSortKey) ? !existingSortKey.ascending : true
 			};
-
 			if (multiHeaderSort) {
 				// update the array with key and direction
-				let theKey = this.sortOrder.filter(function(sk) {
-					return sk.key == key;
-				});
-				if (theKey.length == 0){
+				if (!existingSortKey){
 					// add new key
 					this.sortOrder.push(sortKey);
 				} else {
-					// change direction
-					theKey[0].ascending = !theKey[0].ascending;
+					existingSortKey.ascending = sortKey.ascending;
 				}
 			} else {
-				// if key was only element, then flip instead
-				if(this.sortOrder.length == 1 && this.sortOrder[0].key == key){
-					this.sortOrder[0].ascending = !this.sortOrder[0].ascending;
-				} else {
-					// replace with new array
-					this.sortOrder = [ sortKey ]
-				}
+				this.sortOrder = [ sortKey ]
 			}
 		}
 	}
@@ -165,20 +200,6 @@ export default {
 <style lang="scss" scoped>
 .m-table-container table { 
 	table-layout: fixed;
-}
-
-.slide-enter-active {
-  	transition: all .35s ease;
-}
-
-.slide-leave-active {
-  	transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  	display: none;
-}
-
-.slide-enter, .slide-leave-to {
-  	transform: translateX(20px);
-  	opacity: 0;
 }
 
 </style>
