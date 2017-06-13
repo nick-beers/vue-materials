@@ -210,6 +210,8 @@ export default {
 		if(this.options.pagingDefault && this.options.pagingOptions.indexOf(this.options.pagingDefault) == -1){
 			// if paging is specified and pagingOptions does not contain it, default to first
 			this.itemsPerPage = this.calculatedOptions.pagingOptions[0];
+		} else {
+			this.itemsPerPage = this.options.pagingDefault;
 		}
 	}
 }
