@@ -39,8 +39,6 @@ import MTextInput from './text-input.vue'
 import MTable from './table.vue'
 import MTapTarget from './tap-target.vue'
 
-import MTableNew from './table-new.vue'
-
 export default {
     MFooter,
     MNav,
@@ -82,6 +80,4 @@ export default {
     MTextInput,
     MTable,
     MTapTarget
-
-    ,MTableNew
 }

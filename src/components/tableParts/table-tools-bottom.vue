@@ -3,7 +3,7 @@
 		<div class="table-paging">
 			<div class="results-per-page-label">Rows per page:</div>
 			<div class="results-per-page">
-				<m-select :items="itemsPerPageOptions" v-model="itemsPerPage"></m-select>
+				<m-select :items="internalPerPage" v-model="itemsPerPage"></m-select>
 			</div>
 		</div>
 		<div class="results">{{ resultsText }}</div>
@@ -32,9 +32,26 @@ export default {
 		maxPageIndex: {
 			type: Number,
 			default: 0
+		},
+		options: {
+			type: Object,
+			required: true
 		}
 	},
 	computed: {
+		itemsPerPage: {
+			get(){
+				return this.options.itemsPerPage;
+			},
+			set(val){
+				this.$emit('changePerPage', parseInt(val));
+			}
+		},
+		internalPerPage() {
+			return this.options.pagingOptions.map((id) => {
+				return { id: id, text: id }
+			});
+		},
 		canPageLeft() {
 			return this.pageIndex > 0;
 		},
@@ -43,21 +60,7 @@ export default {
 		},
 		resultsText() {
 			return `Page ${this.pageIndex + 1} of ${this.maxPageIndex}`;
-		},
-		itemsPerPageParsed(){
-			return parseInt(this.itemsPerPage);
 		}
-	},
-	data() {
-		return {
-			itemsPerPage: 10,
-			itemsPerPageOptions: [
-				{ id:5, text: "5"},
-				{ id:10, text: "10"},
-				{ id:25, text: "25"},
-				{ id:50, text: "50"},
-			]
-		};
 	},
 	methods: {
 		jumpToPage(newPageIndex) {
@@ -72,11 +75,9 @@ export default {
 			if(!this.canPageRight) return;
 
 			this.jumpToPage(this.pageIndex + 1);
-		}
-	},
-	watch: {
-		itemsPerPageParsed(val) {
-			this.$emit('changePerPage', this.itemsPerPageParsed);
+		},
+		changePaging(value){
+			this.$emit('changePerPage', value);
 		}
 	}
 }
