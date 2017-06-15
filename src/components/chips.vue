@@ -100,4 +100,3 @@
         }
     }
 </script>
-                        'limit': (this.autocompleteLimit ? this.autocompleteLimit : undefined),
