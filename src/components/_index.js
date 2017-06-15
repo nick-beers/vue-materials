@@ -10,6 +10,7 @@ import MCarousel from './carousel.vue'
 import MCarouselItem from './carousel-item.vue'
 import MCheckbox from './checkbox.vue'
 import MChip from './chip.vue'
+import MChips from './chips.vue'
 import MCollapsible from './collapsible.vue'
 import MCollection from './collection.vue'
 import MCollectionItem from './collection-item.vue'
@@ -51,6 +52,7 @@ export default {
     MCarousel,
     MCarouselItem,
     MChip,
+    MChips,
     MCollapsible,
     MCollection,
     MCollectionItem,
