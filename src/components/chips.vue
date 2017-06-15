@@ -27,6 +27,10 @@
                 type: String,
                 default: ''
             },
+            data: {
+                type: Array,
+                default: () => []
+            },
             autocompleteLimit: {
                 type: Number,
                 default: Infinity
@@ -34,20 +38,6 @@
             autocompleteStartLength: {
                 type: Number,
                 default: 1
-            },
-            data: {
-                type: Array,
-                default: () => []
-            },
-            autocompleteOptions: {
-                type: Object,
-                default() {
-                    return {
-                        data: {},
-                        limit: Infinity,
-                        minLength: 1
-                    }
-                }
             },
             autocompleteData: {
                 type: Object,
@@ -81,6 +71,7 @@
                     'secondaryPlaceholder': (this.secondaryPlaceholder ? this.secondaryPlaceholder : undefined),
                     'autocompleteOptions': {
                         'data': (this.autocompleteData ? this.autocompleteData : {}),
+                        'limit': this.autocompleteLimit,
                         'minLength': this.autocompleteStartLength
                     }
                 };
