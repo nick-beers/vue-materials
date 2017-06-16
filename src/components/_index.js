@@ -39,6 +39,7 @@ import MTextArea from './text-area.vue'
 import MTextInput from './text-input.vue'
 import MTable from './table.vue'
 import MTapTarget from './tap-target.vue'
+import MScrollspy from './scrollspy.vue'
 
 export default {
     MFooter,
@@ -81,5 +82,6 @@ export default {
     MTextArea,
     MTextInput,
     MTable,
-    MTapTarget
+    MTapTarget,
+    MScrollspy
 }
