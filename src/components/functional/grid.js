@@ -1,8 +1,9 @@
 export default {
     functional: true,
 
-    render: (h, { data, children }) => {
+    render: (h, { props, data, children }) => {
         let attrs = Object.keys(data.attrs)
+        console.log(props, data)
         attrs.unshift('col')
         data.attrs = {}
         data.attrs.class = attrs.join(' ')
