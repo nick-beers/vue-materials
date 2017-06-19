@@ -2,14 +2,16 @@ export default {
     functional: true,
 
     render: (h, { props, data, children }) => {
-        let attrs = Object.keys(data.attrs)
-        console.log(props, data)
-        attrs.unshift('col')
-        data.attrs = {}
-        data.attrs.class = attrs.join(' ')
-
-        data.staticClass = data.staticClass || ''
-        data.staticClass += ` ${attrs.join(' ')}`
+        let attrs = Object.keys(data.attrs).filter(function(prop){ return !data.attrs[prop]})
+        // remove grid specific attrs
+        for(var prop in data.attrs){
+            if(new RegExp('^(s|m|l){1}\\d{1,2}$', 'i').test(prop)){
+               delete data.attrs[prop] 
+            }
+        }
+        attrs.unshift('col');
+        data.staticClass = data.staticClass || '';
+        data.staticClass = `${attrs.join(' ')} ` + data.staticClass;
 
         return h('div', data, children)
     }
