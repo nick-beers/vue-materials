@@ -11,7 +11,7 @@ export default {
         }
         attrs.unshift('col');
         data.staticClass = data.staticClass || '';
-        data.staticClass = `${attrs.join(' ')} ` + data.staticClass;
+        data.staticClass = data.staticClass.split(' ').concat(attrs).join(' ');
 
         return h('div', data, children)
     }
