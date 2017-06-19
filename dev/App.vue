@@ -179,7 +179,7 @@
         </m-row>
       </m-grid>
       <m-grid class="hide-on-small-only" m3 l2>
-        <div>
+        <div v-m-pushpin="pushpinOptions">
           <m-scrollspy :linkList="scrollSpyLinks"></m-scrollspy>
         </div>
       </m-grid>
@@ -241,6 +241,9 @@ export default {
           console.log("Ready");
         },
         complete: function() { console.log('Closed'); } // Callback for Modal close
+      },
+      pushpinOptions: {
+        top: 80
       },
       newTableColumns: [ 'id', 'firstname', 'lastname', 'active' ],
       chipData: [
