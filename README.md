@@ -44,6 +44,9 @@ Then run the following command to boot webpack
 npm run dev
 ```
 
+# Documentation
+Due to a change in the API and addition of new features I've also forked the documentation and began updating that to reflect changes. The docs are not hosted anywhere, but following the instructions should launch a local version of the docs to see usage and API guidelines. A major change in this version was switching alises of all components and directives to be pre-pended with 'm-' for components and directives with 'v-m-' to have the library stand out from the standard vue library.
+https://github.com/nick-beers/vue-materials-docs
 ___
 
 Thank you to John Leider for providing the original sourcecode for the project.
