@@ -6,10 +6,10 @@
     <m-row>
       <m-grid s12 m9 l10>
         <m-row>
-          <m-grid id="progresslinear" class="scrollspy" s12>
+          <m-grid s12>
             <m-progress-linear indeterminate></m-progress-linear>
           </m-grid>
-          <m-grid s12>
+          <m-grid id="card" class="scrollspy" s12>
             <m-card>
               <div class="card-content">
                 <span class="card-title">Card Title</span>
@@ -179,7 +179,7 @@
         </m-row>
       </m-grid>
       <m-grid class="hide-on-small-only" m3 l2>
-        <div class="pinned">
+        <div>
           <m-scrollspy :linkList="scrollSpyLinks"></m-scrollspy>
         </div>
       </m-grid>
@@ -256,7 +256,7 @@ export default {
       },
       chipAutocompleteLimit: 1,
       scrollSpyLinks: [
-        { id: "progresslinear", text: "Progress Linear" },
+        { id: "card", text: "Card" },
         { id: "breadcrumbs", text: "Bread Crumbs" },
         { id: "table", text: "Table" },
         { id: "chips", text: "Chips" },

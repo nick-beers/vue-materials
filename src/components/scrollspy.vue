@@ -1,5 +1,5 @@
 <template>
-    <ul class="section table-of-contents">
+    <ul class="table-of-contents">
         <li v-for="link in linkList">
             <a :href="link.id | makeHref">{{link.text}}</a>
         </li>
@@ -21,6 +21,10 @@
             scrollSpyTarget: {
                 type: String,
                 default: '.scrollspy'
+            },
+            offset: {
+                type: String,
+                default: '200px'
             }
         },
         watch: {
@@ -30,7 +34,7 @@
         },
         methods: {
             init(){
-                $(this.scrollSpyTarget).scrollSpy();
+                $(this.scrollSpyTarget).scrollSpy({ offset: this.offset});
             }
         },
         filters: {
