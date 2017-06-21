@@ -3,6 +3,7 @@
         <li v-for="link in linkList">
             <a :href="link.id | makeHref">{{link.text}}</a>
         </li>
+        <slot></slot>
     </ul>
 </template>
 
