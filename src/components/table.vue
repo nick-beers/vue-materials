@@ -17,7 +17,7 @@
 			@select-row="selectRow">
 		</m-table-body>
 	</table>
-	<m-table-tools-bottom	
+	<m-table-tools-bottom v-if="options.calculatedOptions"
 		:itemCount="tableData.length"
 		:pageIndex="pageIndex"
 		:maxPageIndex="maxPages"
