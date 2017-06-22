@@ -176,6 +176,10 @@
           <m-grid id="chips" class="scrollspy" s12>
             <m-chips :data="chipData" :autocompleteData="chipAutocompleteData" :autocompleteLimit="chipAutocompleteLimit" @change-chips="chipsListener"></m-chips>
           </m-grid>
+          <m-grid s12>
+            <label for="timepicker">Time</label>
+            <m-time-picker id="timepicker"></m-time-picker>
+          </m-grid>
         </m-row>
       </m-grid>
       <m-grid class="hide-on-small-only" m3 l2>
