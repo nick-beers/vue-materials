@@ -26,6 +26,12 @@
             offset: {
                 type: String,
                 default: '200px'
+            },
+            activeClass: {
+                type: String
+            },
+            getActiveElement: {
+                type: Function
             }
         },
         watch: {
@@ -33,9 +39,18 @@
                 console.log("linkDataUpdated")
             }
         },
+        computed: {
+            settings(){
+                return $.extend({}, {
+                    'offset': this.offset || undefined,
+                    'activeClass': this.activeClass || undefined,
+                    'getActiveElement': this.getActiveElement || undefined
+                });
+            }
+        },
         methods: {
             init(){
-                $(this.scrollSpyTarget).scrollSpy({ offset: this.offset});
+                $(this.scrollSpyTarget).scrollSpy(this.settings);
             }
         },
         filters: {
