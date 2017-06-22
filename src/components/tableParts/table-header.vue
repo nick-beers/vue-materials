@@ -6,7 +6,7 @@
 			</th>
 			<th class="column-header" v-for="column in columns" :key="column" @click="sortBy(column, $event)">
 				<m-icon v-if="options.sortable" tiny>{{sortedDir(column)}}</m-icon>
-				<span>{{column | capitalize}}</span>
+				<span>{{column | convertColumnToTitle}}</span>
 			</th>
 		</tr>
 	</thead>
@@ -37,8 +37,19 @@ export default {
 		}
 	},
 	filters: {
-		capitalize(str) {
-			return str.charAt(0).toUpperCase() + str.slice(1);
+		convertColumnToTitle(str) {
+			return str.replace(/[_-]/g, ' ')
+				.replace(/([A-Z][a-z])/g, 
+					function(match) { 
+						if(match == '_' || match == '-') 
+							return ` `;
+						return ` ${match}`;
+					}
+				).replace(/\w\S*/g, 
+					function(txt) {
+						return txt[0].toUpperCase() + txt.slice(1).toLowerCase();
+					}
+				);
 		}
 	},
 	methods: {
