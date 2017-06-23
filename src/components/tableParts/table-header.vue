@@ -80,6 +80,7 @@ tr.table-header-row {
 	.column-header-select {
 		width: 50px;
 		padding-bottom: 5px;
+		margin-top: -21px
 	}
 	.column-not-sorted {
 		font-size: 14px;

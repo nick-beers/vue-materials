@@ -36,7 +36,7 @@
         },
         watch: {
             linkData(){
-                console.log("linkDataUpdated")
+                $(this.scrollSpyTarget).scrollSpy(this.settings);
             }
         },
         computed: {

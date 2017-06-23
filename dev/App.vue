@@ -89,7 +89,7 @@
             </m-collection>
           </m-grid>
           <m-grid id="table" class="scrollspy" s12>
-            <m-table highlight :columns="newTableColumns" :tableData="tableData" :options="tableOptions"></m-table>
+            <m-table highlight responsive :columns="newTableColumns" :tableData="tableData" :options="tableOptions"></m-table>
           </m-grid>
           <m-grid s12>
             <m-chip>First chip</m-chip>

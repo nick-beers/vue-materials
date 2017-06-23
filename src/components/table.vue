@@ -17,7 +17,7 @@
 			@select-row="selectRow">
 		</m-table-body>
 	</table>
-	<m-table-tools-bottom v-if="options.calculatedOptions"
+	<m-table-tools-bottom v-if="calculatedOptions.paging"
 		:itemCount="tableData.length"
 		:pageIndex="pageIndex"
 		:maxPageIndex="maxPages"
@@ -218,8 +218,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.m-table-container table { 
-	table-layout: fixed;
+.m-table-container {
+	padding-bottom: 5px;
+
+	table {
+		table-layout: fixed;
+	}
 }
 
 </style>

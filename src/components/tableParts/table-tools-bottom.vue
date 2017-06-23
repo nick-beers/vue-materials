@@ -93,6 +93,7 @@ export default {
 	    display: inline-block;
 	    margin: 7px 15px 0 15px;
 	    vertical-align: inherit;
+	    height: 50px;
 
 	    span.caret {
 	    	color: rgba(0,0,0,0.54);
