@@ -1,16 +1,60 @@
-<template>
-	<transition-group name="slide" tag="tbody">
-		<tr class="table-row" v-for="row in rowData" :key="row[options.rowKey]">
-			<td class="table-check-box" v-if="options.selectable">
-				<m-checkbox  :value="isSelected(row)" :name="row[options.rowKey] | checkBoxName" @input="selectRow(row)"></m-checkbox>
-			</td>
-			<td v-for="column in columns">{{ row[column] }}</td>
-		</tr>
-	</transition-group>
-</template>
-
 <script>
 export default {
+	render(createElement){
+		let rows = [];
+		for(let row of this.rowData){
+			let rowColumns = [];
+			// load the checkbox
+			if(this.options.selectable){
+				rowColumns.push(createElement('td',
+				{
+					class: 'table-check-box'
+				},
+				[
+					createElement('m-checkbox', 
+					{
+						props: {
+							value: this.isSelected(row),
+							name: this.$options.filters.checkBoxName(row[this.options.rowKey])
+						},
+						on: {
+							input: this.selectRow.bind(null, row)
+						}
+					})
+				]));
+			}
+
+			for(let column of this.columns){
+				let cellRenderer = defaultCellRenderer;
+				if(column.cellRenderer){
+					cellRenderer = column.cellRenderer;
+				}
+
+				rowColumns.push(cellRenderer(createElement, row, column, this))
+			}
+
+			rows.push(createElement('tr',
+				{
+					class: 'table-row',
+					key: this.options.rowKey
+				},
+				rowColumns
+				)
+			);
+		}
+
+		return createElement(
+			'transition-group',
+			{
+				name: 'slide',
+				tag: 'tbody'
+			},
+			rows
+		);
+		function defaultCellRenderer(createElement, row, column, vueInstance){
+			return createElement('td', {}, [row[column].toString()])
+		}
+	},
 	props: {
 		rowData: {
 			type: Array,
