@@ -36,7 +36,7 @@ export default {
 			rows.push(createElement('tr',
 				{
 					class: 'table-row',
-					key: this.options.rowKey
+					key: row[this.options.rowKey]
 				},
 				rowColumns
 				)
@@ -46,7 +46,9 @@ export default {
 		return createElement(
 			'transition-group',
 			{
-				name: 'slide',
+				props: {
+					name: 'slide'
+				},
 				tag: 'tbody'
 			},
 			rows
