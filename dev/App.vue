@@ -249,7 +249,12 @@ export default {
       pushpinOptions: {
         top: 80
       },
-      newTableColumns: [ 'id', 'firstname', 'lastname', 'active' ],
+      newTableColumns: [ 
+        'id', 
+        { id: 'firstname', displayText: 'First Name'},
+        { id: 'lastname', cellRenderer: function(ce, rd, co, vi) { return  ce('td', {}, [ rd['lastname'].toString() ])}}, 
+        'active' 
+      ],
       chipData: [
         { tag: 'Apple', }, 
         { tag: 'Microsoft',},

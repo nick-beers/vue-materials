@@ -1,4 +1,7 @@
 <script>
+// library imports
+import { GetColumnId } from '../../util/object-helpers';
+
 export default {
 	render(createElement){
 		let rows = [];
@@ -54,7 +57,7 @@ export default {
 			rows
 		);
 		function defaultCellRenderer(createElement, row, column, vueInstance){
-			return createElement('td', {}, [row[column].toString()])
+			return createElement('td', {}, [row[GetColumnId(column)].toString()])
 		}
 	},
 	props: {

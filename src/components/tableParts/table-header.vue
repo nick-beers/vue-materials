@@ -4,15 +4,18 @@
 			<th v-if="options.selectable" class="column-header-select">
 				<m-checkbox :value="selectAll" name="select-all" @input="selectAllCheck"></m-checkbox>
 			</th>
-			<th class="column-header" :class="sortClass(column)" v-for="column in columns" :key="column" @click="sortBy(column, $event)">
-				<m-icon v-if="options.sortable" tiny>{{sortedDir(column)}}</m-icon>
-				<span>{{column | convertColumnToTitle}}</span>
+			<th class="column-header" :class="sortClass(getColumnId(column))" v-for="column in columns" :key="getColumnId(column)" @click="sortBy(getColumnId(column), $event)">
+				<m-icon v-if="options.sortable" tiny>{{sortedDir(getColumnId(column))}}</m-icon>
+				<span>{{ column | convertColumnToTitle}}</span>
 			</th>
 		</tr>
 	</thead>
 </template>
 
 <script>
+// library imports
+import { GetColumnId } from '../../util/object-helpers';
+
 export default {
 	props: {
 		columns: {
@@ -37,8 +40,10 @@ export default {
 		}
 	},
 	filters: {
-		convertColumnToTitle(str) {
-			return str.replace(/[_-]/g, ' ')
+		convertColumnToTitle(column) {
+			if(column.displayText)
+				return column.displayText;
+			return GetColumnId(column).replace(/[_-]/g, ' ')
 				.replace(/([A-Z][a-z])/g, 
 					function(match) { 
 						if(match == '_' || match == '-') 
@@ -74,6 +79,9 @@ export default {
 			} 
 			this.$emit('change-sort-order', key, event.ctrlKey);
 		},
+		getColumnId(col){
+			return GetColumnId(col);
+		}
 	}
 }
 </script>
