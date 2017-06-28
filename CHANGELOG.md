@@ -1,5 +1,12 @@
 ## Changelog
 
+## v1.4.0 (28 Jun 2017)
+- **Fixing default options for paging**
+- Added timepicker from 0.99.0
+- Changed table columns to handle custom cell rendering or column header text
+- Updating scrollspy to match 0.99.0 materialize
+- Table headers capitalize function will properly handle object props separated by camelCase, underscores, or dashes
+
 ## v1.3.0 (19 Jun 2017)
 - Added Pushpin directive
 - Added Scrollspy component
