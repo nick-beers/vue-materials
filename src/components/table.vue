@@ -110,11 +110,11 @@ export default {
 		},
 		calculatedOptions(){
 			return {
-					rowKey: this.options.id || 'id',
+					rowKey: this.options.rowKey || 'id',
 					paging: this.options.paging || false,
 					itemsPerPage: this.itemsPerPage,
 					pagingOptions: this.options.pagingOptions || [5,10,25,50],
-					sortable: this.options.sortable || true,
+					sortable: this.options.sortable || false,
 					selectable: this.options.selectable || false
 				};
 		},
