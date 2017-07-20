@@ -89,7 +89,12 @@
             </m-collection>
           </m-grid>
           <m-grid id="table" class="scrollspy" s12>
-            <m-table highlight responsive :columns="newTableColumns" :tableData="tableData" :options="tableOptions"></m-table>
+            <m-table highlight 
+                     responsive 
+                     :columns="newTableColumns" 
+                     :tableData="tableData" 
+                     :options="tableOptions"
+                     :selectedRows="tableSelectedRows"></m-table>
           </m-grid>
           <m-grid s12>
             <m-chip>First chip</m-chip>
@@ -272,7 +277,8 @@ export default {
         { id: "breadcrumbs", text: "Bread Crumbs" },
         { id: "table", text: "Table" },
         { id: "chips", text: "Chips" },
-      ]
+      ],
+      tableSelectedRows: [ 1, 2, 6, 8, 11 ]
     }
   },
   computed: {
