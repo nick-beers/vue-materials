@@ -65,10 +65,13 @@ export default {
 			return 'arrow_upward';
 		},
 		sortClass(key){
+			let sortClasses = { 'sortable': this.options.sortable };
 			let sortDir = this.sortedColumns.find(sortData => sortData.key == key);
 			if(!sortDir)
-				return null;
-			return (sortDir.ascending) ? 'asc' : 'desc';
+				return sortClasses;
+			sortClasses[((sortDir.ascending) ? 'asc' : 'desc')] = true;
+
+			return sortClasses;
 		},
 		selectAllCheck(){
 			this.$emit('select-all', !this.selectAll)
@@ -102,18 +105,18 @@ tr.table-header-row {
 	}
 
 	.column-header {
-		cursor: pointer;
+		&.sortable {
+			cursor: pointer;
+		}
+		&.asc i {
+			transform: rotate(0deg);
+			transition: all 0.25s ease;
+		}
+		&.desc i {
+			transform: rotate(-180deg);
+			transition: all 0.25s ease;
+		}
 
-
-	}
-	.column-header.asc i {
-		transform: rotate(0deg);
-		transition: all 0.25s ease;
-	}
-
-	.column-header.desc i {
-		transform: rotate(-180deg);
-		transition: all 0.25s ease;
 	}
 }
 
