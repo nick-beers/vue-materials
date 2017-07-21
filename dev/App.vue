@@ -89,7 +89,12 @@
             </m-collection>
           </m-grid>
           <m-grid id="table" class="scrollspy" s12>
-            <m-table highlight responsive :columns="newTableColumns" :tableData="tableData" :options="tableOptions"></m-table>
+            <m-table highlight 
+                     responsive 
+                     :columns="newTableColumns" 
+                     :tableData="tableData" 
+                     :options="tableOptions"
+                     :selectedRows="tableSelectedRows"></m-table>
           </m-grid>
           <m-grid s12>
             <m-chip>First chip</m-chip>
@@ -103,7 +108,7 @@
                   <label for="first_name">First Name</label>
               </m-grid>
                 <m-grid class="input-field" s12 m6>
-                    <input id="last_name" type="text" class="validate">
+                    <m-text-input  id="last_name" type="text" validate></m-text-input>
                     <label for="last_name">Last Name</label>
               </m-grid>
                 <m-grid class="input-field" s12 m6>
@@ -140,6 +145,14 @@
               <m-grid s12>
                 <m-switch on="On" off="Off" checked name="switch-1"></m-switch>
               </m-grid>
+              <m-grid s12 m6>
+              <br />
+                <m-row class="input-field">
+                  <m-icon prefix>mode_edit</m-icon>
+                  <m-text-area value="Write this text." id="icon_prefix2" validate></m-text-area>
+                  <label for="icon_prefix2">Text Area</label>
+                </m-row>
+              </m-grid>
               </form>
             </m-row>
           </m-grid>
@@ -157,6 +170,9 @@
              </m-modal>
           </m-grid>
           <m-grid s12>
+
+          </m-grid>
+          <m-grid s12>
             <m-tabs :selected="selectedTab">
               <li class="tab"><a href="#test1">Test 1</a></li>
               <li class="tab"><a href="#test2">Test 2</a></li>
@@ -165,13 +181,6 @@
             <div id="test1" class="col s12 blue">Test 1</div>
             <div id="test2" class="col s12 red">Test 2</div>
             <div id="test3" class="col s12 green">Test 3</div>
-          </m-grid>
-          <m-grid s12>
-            <m-grid class="input-field" s12 m6>
-              <m-icon prefix>mode_edit</m-icon>
-              <m-text-area value="Write this text." id="icon_prefix2"></m-text-area>
-              <label for="icon_prefix2">Text Area</label>
-            </m-grid>
           </m-grid>
           <m-grid id="chips" class="scrollspy" s12>
             <m-chips :data="chipData" :autocompleteData="chipAutocompleteData" :autocompleteLimit="chipAutocompleteLimit" @change-chips="chipsListener"></m-chips>
@@ -272,7 +281,8 @@ export default {
         { id: "breadcrumbs", text: "Bread Crumbs" },
         { id: "table", text: "Table" },
         { id: "chips", text: "Chips" },
-      ]
+      ],
+      tableSelectedRows: [ 1, 2, 6, 8, 11 ]
     }
   },
   computed: {

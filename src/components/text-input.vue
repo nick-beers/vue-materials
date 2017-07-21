@@ -1,5 +1,5 @@
 <template>
-    <input class="validate"
+    <input :class="classes"
            type="text"
            :data-length="length"
            :value="value"
@@ -11,8 +11,20 @@
     import Counter from '../mixins/counter'
 
     export default {
-        props: ['value'],
-
+        props: {
+          value: null,
+          validate: {
+            type: Boolean,
+            default: false
+          }
+        },
+        computed: {
+          classes() {
+            return {
+              validate: this.validate
+            }
+          }
+        },
         mixins: [
             Counter
         ]

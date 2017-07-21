@@ -8,6 +8,8 @@ export default {
             } else {
                 el.setAttribute('href', `#${binding.arg}`)
             }
+
+            el.classList.add("modal-trigger")
             
             $(`#${binding.arg}`).modal(binding.value)
         })

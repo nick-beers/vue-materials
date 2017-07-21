@@ -55,6 +55,12 @@ export default {
 				return [];
 			}
 		},
+		selectedRows: {
+			type: Array,
+			default(){
+				return [];
+			}
+		},
 		options: {
 			type: Object,
 			default() {
@@ -93,7 +99,7 @@ export default {
 	data() {
 		return {
 			sortOrder: [],
-			selectedRowKeys: [],
+			selectedRowKeys: this.selectedRows,
 			pageIndex: 0,
 			itemsPerPage: 10
 		}
