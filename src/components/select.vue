@@ -1,6 +1,7 @@
 <template>
     <select v-model="model" v-bind:multiple="multiple">
         <option v-if="multiple"
+                disabled
                 value=""
         >{{ selectText }}</option>
         <option v-for="item in items"

@@ -122,6 +122,7 @@
                   <option value="2">Option 2</option>
                   <option value="3">Option 3</option>
                 </m-select>
+                <m-select multiple :items="multiselect"></m-select>
                 <label>Materialize Select</label>
               </m-grid>
               <m-grid s12>
@@ -234,6 +235,12 @@ export default {
         { href: '#', text: 'First' },
         { href: '#', text: 'Second' },
         { href: '#', text: 'Third' }
+      ],
+      multiselect: [
+        { id: 1, text: 'First' },
+        { id: 2, text: 'Second' },
+        { id: 3, text: 'Third' },
+        { id: 4, text: 'Fourth' }
       ],
       carouselItems: [
         'http://lorempixel.com/250/250/nature/1',
