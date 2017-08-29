@@ -21,7 +21,7 @@
             </m-card>
           </m-grid>
           <m-grid s12>
-            <m-btn type="button" wavesLight>Button</m-btn>
+            <m-btn type="button" v-m-tooltip:top="toolTipMessage" wavesLight>Button</m-btn>
             <m-btn-link id="featureDis" type="button" class="pulse" floating wavesLight>B</m-btn-link>
             <m-btn type="button" wavesLight v-m-tap-target:fdsample>Open Feature Discovery</m-btn>
             <m-tap-target id="fdsample" dataActivates="featureDis">
@@ -183,7 +183,7 @@
             <div id="test3" class="col s12 green">Test 3</div>
           </m-grid>
           <m-grid id="chips" class="scrollspy" s12>
-            <m-chips :data="chipData" :autocompleteData="chipAutocompleteData" :autocompleteLimit="chipAutocompleteLimit" @change-chips="chipsListener"></m-chips>
+            <m-chips :data="chipData" @change-chips="chipsListener"></m-chips>
           </m-grid>
           <m-grid s12>
             <label for="timepicker">Time</label>
@@ -205,6 +205,7 @@
 export default {
   data: function() {
     return {
+      toolTipMessage: 'Tool Tip',
       columns: [ 
         { name: 'id', hasSort: true },
         { name: 'firstname', hasSort: true },

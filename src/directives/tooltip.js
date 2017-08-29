@@ -1,6 +1,7 @@
 import Load from '../util/load'
 
 const tooltip = (el, binding, vnode) => {
+    console.log(el, binding, vnode)
     const delay = typeof binding.modifiers !== 'undefined'
         ? Object.keys(binding.modifiers)[0]
         : 50
@@ -8,7 +9,7 @@ const tooltip = (el, binding, vnode) => {
     el.classList.add('tooltipped')
     el.setAttribute('data-position', binding.arg)
     el.setAttribute('data-delay', delay)
-    el.setAttribute('data-tooltip', binding.expression.replace(/\'/g, ''))
+    el.setAttribute('data-tooltip', binding.value.replace(/\'/g, ''))
 
     Load.call(vnode.context, () => $(el).tooltip())
 } 
