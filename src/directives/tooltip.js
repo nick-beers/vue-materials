@@ -1,7 +1,6 @@
 import Load from '../util/load'
 
 const tooltip = (el, binding, vnode) => {
-    console.log(el, binding, vnode)
     const delay = typeof binding.modifiers !== 'undefined'
         ? Object.keys(binding.modifiers)[0]
         : 50
