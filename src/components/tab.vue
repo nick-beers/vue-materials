@@ -1,6 +1,6 @@
 <template>
     <li class="tab col" :class="{ 'disabled': this.disabled }">
-        <a :href="link" :class="classes" :target="target">
+        <a :href="href" :class="classes" :target="target">
             <slot></slot>
         </a>
     </li>
@@ -13,7 +13,7 @@
                 type: Boolean,
                 default: false
             },
-            link: {
+            href: {
                 type: String,
                 required: true
             },

@@ -170,9 +170,9 @@
           </m-grid>
           <m-grid s12>
             <m-tabs :selected="selectedTab">
-              <m-tab link="#test1">Test 1</m-tab>
-              <m-tab link="#test2" target="_self">Test 2</m-tab>
-              <m-tab link="#test3">Test 3</m-tab>
+              <m-tab href="#test1">Test 1</m-tab>
+              <m-tab href="#test2" target="_self">Test 2</m-tab>
+              <m-tab href="#test3">Test 3</m-tab>
             </m-tabs>
             <div id="test1" class="col s12 blue">Test 1</div>
             <div id="test2" class="col s12 red">Test 2</div>
