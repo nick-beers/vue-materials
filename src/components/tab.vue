@@ -1,10 +1,6 @@
 <template>
-    <li class="tab col"
-        :class="{ 'disabled': this.disabled }"
-    >
-        <a :href="target"
-           :class="classes"
-        >
+    <li class="tab col" :class="{ 'disabled': this.disabled }">
+        <a :href="link" :class="classes" :target="target">
             <slot></slot>
         </a>
     </li>
@@ -17,13 +13,18 @@
                 type: Boolean,
                 default: false
             },
-
-            target: {
+            link: {
                 type: String,
                 required: true
+            },
+            target: {
+                type: String
+            },
+            disabled: {
+                type: Boolean,
+                default: false
             }
         },
-
         computed: {
             classes () {
                 return {
