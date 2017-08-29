@@ -1,6 +1,6 @@
 <template>
     <select v-model="model" v-bind:multiple="multiple">
-        <option v-if="multiple"
+        <option v-if="selectText"
                 disabled
                 value=""
         >{{ selectText }}</option>
@@ -27,7 +27,7 @@
             },
             selectText: {
                 type: String,
-                default: 'Choose your options'
+                default: ''
             },
             value: {
                 default: null,

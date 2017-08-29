@@ -116,13 +116,8 @@
                     <label for="disabled" class="active">Disabled</label>
               </m-grid>
               <m-grid class="input-field" s12 m6>
-                <m-select>
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
-                </m-select>
-                <m-select multiple :items="multiselect"></m-select>
+                <m-select :items="multiselect"></m-select>
+                <m-select multiple :items="multiselect" selectText="Choose multiple options"></m-select>
                 <label>Materialize Select</label>
               </m-grid>
               <m-grid s12>
