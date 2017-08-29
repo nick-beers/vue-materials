@@ -4,7 +4,7 @@
 			<th v-if="options.selectable" class="column-header-select">
 				<m-checkbox :value="selectAll" name="select-all" @input="selectAllCheck"></m-checkbox>
 			</th>
-			<th class="column-header" :class="sortClass(getColumnId(column))" v-for="column in columns" :key="getColumnId(column)" @click="sortBy(getColumnId(column), $event)">
+			<th class="column-header" :class="getColumnClasses(column)" v-for="column in columns" :key="getColumnId(column)" @click="sortBy(getColumnId(column), $event)">
 				<m-icon v-if="options.sortable" tiny>{{sortedDir(getColumnId(column))}}</m-icon>
 				<span>{{ column | convertColumnToTitle}}</span>
 			</th>
@@ -71,6 +71,19 @@ export default {
 				return sortClasses;
 			sortClasses[((sortDir.ascending) ? 'asc' : 'desc')] = true;
 
+			return sortClasses;
+		},
+		getColumnClasses(column){
+			var sortClasses = this.sortClass(this.getColumnId(column));
+			if(column.headerClasses) {
+				switch (column.headerClasses.constructor) {
+				  case Array:
+				    sortClasses[column.headerClasses.join(' ')] = true;
+				    break;
+				  default:
+				  	sortClasses[column.headerClasses] = true;
+				}
+			}
 			return sortClasses;
 		},
 		selectAllCheck(){

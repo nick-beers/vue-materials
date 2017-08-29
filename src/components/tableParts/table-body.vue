@@ -57,7 +57,17 @@ export default {
 			rows
 		);
 		function defaultCellRenderer(createElement, row, column, vueInstance){
-			return createElement('td', {}, [row[GetColumnId(column)].toString()])
+			var propObj = {};
+			if(column.cellClasses) {
+				switch (column.cellClasses.constructor) {
+				  case Array:
+				    propObj.class = column.cellClasses.join(' ');
+				    break;
+				  default:
+				  	propObj.class = column.cellClasses;
+				}
+			}
+			return createElement('td', propObj, [row[GetColumnId(column)].toString()])
 		}
 	},
 	props: {

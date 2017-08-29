@@ -262,10 +262,10 @@ export default {
         top: 80
       },
       newTableColumns: [ 
-        'id', 
+        { id: 'id', cellClasses: ['bold', 'blue-text'], headerClasses: ['red-text', 'bold'] },
         { id: 'firstname', displayText: 'First Name'},
         { id: 'lastname', cellRenderer: function(ce, rd, co, vi) { return  ce('td', {}, [ rd['lastname'].toString() ])}}, 
-        'active' 
+        'active'
       ],
       chipData: [
         { tag: 'Apple', }, 
