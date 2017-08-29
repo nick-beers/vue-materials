@@ -2,6 +2,9 @@
     <textarea :class="classes"
               :data-length="length"
               @input="$emit('input', $event.target.value)"
+              @blur="$emit('blur', $event.target.value)"
+              @focus="$emit('focus', $event.target.value)"
+              @change="$emit('change', $event.target.value)"
               :value="value"
     >
     </textarea>

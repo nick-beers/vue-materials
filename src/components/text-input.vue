@@ -4,6 +4,9 @@
            :data-length="length"
            :value="value"
            @input="$emit('input', $event.target.value)"
+           @blur="$emit('blur', $event.target.value)"
+           @focus="$emit('focus', $event.target.value)"
+           @change="$emit('change', $event.target.value)"
     >
 </template>
 

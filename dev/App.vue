@@ -104,7 +104,7 @@
             <m-row>
               <form>
                 <m-grid class="input-field" s12 m6>
-                  <m-text-input placeholder="First Name" id="first_name" length="120"></m-text-input>
+                  <m-text-input placeholder="First Name" id="first_name" length="120" @blur="consoleLogger" @focus="consoleLogger" @change="consoleLogger"></m-text-input>
                   <label for="first_name">First Name</label>
               </m-grid>
                 <m-grid class="input-field" s12 m6>
@@ -301,6 +301,9 @@ export default {
   methods: {
     chipsListener(payload){
       this.chipData = payload;
+    },
+    consoleLogger(event){
+      console.log(event)
     }
   }
 }
