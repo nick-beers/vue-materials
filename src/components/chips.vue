@@ -65,25 +65,27 @@
         },
         methods: {
             init () {
-                let settings = {
-                    'data': (this.data ? this.data : undefined),
-                    'placeholder': (this.placeholder ? this.placeholder : undefined),
-                    'secondaryPlaceholder': (this.secondaryPlaceholder ? this.secondaryPlaceholder : undefined),
-                    'autocompleteOptions': {
-                        'data': (this.autocompleteData ? this.autocompleteData : {}),
-                        'limit': this.autocompleteLimit,
-                        'minLength': this.autocompleteStartLength
-                    }
-                };
+                $(function(){
+                    let settings = {
+                        'data': (this.data ? this.data : undefined),
+                        'placeholder': (this.placeholder ? this.placeholder : undefined),
+                        'secondaryPlaceholder': (this.secondaryPlaceholder ? this.secondaryPlaceholder : undefined),
+                        'autocompleteOptions': {
+                            'data': (this.autocompleteData ? this.autocompleteData : {}),
+                            'limit': this.autocompleteLimit,
+                            'minLength': this.autocompleteStartLength
+                        }
+                    };
 
-                $(this.$el).material_chip(settings);
-                this.chips = $(this.$el).material_chip('data');
-                
-                // setup event listeners
-                let vm = this;
-                 $(this.$el).on('chip.add chip.delete', function(e, tag){
-                    vm.changeChips(e, tag);
-                });
+                    $(this.$el).material_chip(settings);
+                    this.chips = $(this.$el).material_chip('data');
+                    
+                    // setup event listeners
+                    let vm = this;
+                    $(this.$el).on('chip.add chip.delete', function(e, tag){
+                        vm.changeChips(e, tag);
+                    });
+                }.bind(this))
             },
             changeChips(e, chip){
                 this.chips = $(this.$el).material_chip('data');
