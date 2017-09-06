@@ -152,6 +152,9 @@ export default {
 	watch: {
 		selectedRowKeys(value) {
 			this.$emit('selected-update', value)
+		},
+		selectedRows(value){
+			this.selectedRowKeys = value;
 		}
 	},
 	methods: {
