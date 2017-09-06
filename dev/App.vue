@@ -120,6 +120,10 @@
                 <m-select multiple :items="multiselect" selectText="Choose multiple options"></m-select>
                 <label>Materialize Select</label>
               </m-grid>
+              <m-grid class="input-field" s12>
+                  <m-text-input  id="company" type="text" :acData="chipAutocompleteData" :onAutocomplete="autocompleteFunc"></m-text-input>
+                  <label for="company">Company - Autocomplete</label>
+              </m-grid>
               <m-grid s12>
                 <m-checkbox name="Red">Red</m-checkbox>
                 <m-checkbox value="true" name="Yellow">Yellow</m-checkbox>
@@ -279,6 +283,9 @@ export default {
           'Google': null
       },
       chipAutocompleteLimit: 1,
+      autocompleteFunc: function(val){
+        console.log(val)
+      },
       scrollSpyLinks: [
         { id: "card", text: "Card" },
         { id: "breadcrumbs", text: "Bread Crumbs" },
