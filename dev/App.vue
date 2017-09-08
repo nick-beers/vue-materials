@@ -140,7 +140,11 @@
               </m-grid>
               <m-grid s12 m6>
                 <label id="dateInput">Date</label>
-                <m-date-input id="dateInput"></m-date-input>
+                <m-date-input id="dateInput" 
+                :format="datePickerOptions.format"
+                :closeOnSelect="datePickerOptions.closeOnSelect"
+                :selectMonths="datePickerOptions.selectMonths"
+                :selectYears="datePickerOptions.selectYears"></m-date-input>
               </m-grid>
               <m-grid s12>
                 <m-switch on="On" off="Off" checked name="switch-1"></m-switch>
@@ -305,6 +309,17 @@ export default {
         sortable: true,
         selectable:true
       };
+    },
+    datePickerOptions(){
+      return {
+        selectMonths: true,
+        selectYears: 10,
+        today: 'Now',
+        clear: 'Remove',
+        close: 'Accept',
+        closeOnSelect: true,
+        format: 'dd/mm/yyyy'
+      }
     }
   },
   methods: {
