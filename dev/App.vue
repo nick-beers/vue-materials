@@ -30,9 +30,6 @@
             </m-tap-target>
           </m-grid>
           <m-grid s12>
-            <m-carousel :items="carouselItems"></m-carousel>
-          </m-grid>
-          <m-grid s12>
             <m-fab toolbar toggle icon="menu">
               <ul slot="items">
                 <li>

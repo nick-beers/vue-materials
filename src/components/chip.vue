@@ -15,12 +15,6 @@
             IsLoadable
         ],
 
-        events: {
-            close () {
-                this.remove = true
-            }
-        },
-
         data () {
             return {
                 remove: false
@@ -36,7 +30,7 @@
 
         methods: {
             init () {
-                if (this.remove) {
+                if (this.close) {
                     this.$el.addEventListener('click', () => this.$emit('close'))
                 }
             }
