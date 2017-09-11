@@ -1,6 +1,7 @@
 <template>
     <input type="date" 
            class="datepicker"
+           :value="value"
     >
 </template>
 

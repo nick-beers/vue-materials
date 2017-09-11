@@ -138,6 +138,7 @@
               <m-grid s12 m6>
                 <label id="dateInput">Date</label>
                 <m-date-input id="dateInput" 
+                v-model="datepickerVal"
                 :format="datePickerOptions.format"
                 :closeOnSelect="datePickerOptions.closeOnSelect"
                 :selectMonths="datePickerOptions.selectMonths"
@@ -206,6 +207,7 @@
 export default {
   data: function() {
     return {
+      datepickerVal: null,
       toolTipMessage: 'Tool Tip',
       columns: [ 
         { name: 'id', hasSort: true },
