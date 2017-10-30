@@ -113,7 +113,7 @@
                     <label for="disabled" class="active">Disabled</label>
               </m-grid>
               <m-grid class="input-field" s12 m6>
-                <m-select :items="multiselect"></m-select>
+                <m-select :disabled="selectDisabled" :items="multiselect"></m-select>
                 <m-select multiple :items="multiselect" selectText="Choose multiple options"></m-select>
                 <label>Materialize Select</label>
               </m-grid>
@@ -244,6 +244,7 @@ export default {
         { id: 3, text: 'Third' },
         { id: 4, text: 'Fourth' }
       ],
+      selectDisabled: false,
       carouselItems: [
         'http://lorempixel.com/250/250/nature/1',
         'http://lorempixel.com/250/250/nature/2',

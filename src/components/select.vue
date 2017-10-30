@@ -1,5 +1,5 @@
 <template>
-    <select v-model="model" v-bind:multiple="multiple">
+    <select v-model="model" :disabled="disabled" v-bind:multiple="multiple">
         <option v-if="selectText"
                 disabled
                 value=""
@@ -36,17 +36,22 @@
             textField: {
                 type: String,
                 default: 'text'
+            },
+            disabled: {
+                type: Boolean,
+                default: false
             }
         },
 
         watch: {
             items () {
-                this.$el.removeAttribute('onchange')
-                this.$nextTick(this.init)
+                this.reinit()
             },
             value () {
-                this.$el.removeAttribute('onchange')
-                this.$nextTick(this.init)
+                this.reinit()
+            },
+            disabled(){
+                this.reinit()
             }
         },
 
@@ -63,7 +68,6 @@
         mixins: [
             IsLoadable
         ],
-
         methods: {
             init () {
                 $(this.$el).material_select()
@@ -77,7 +81,10 @@
                     }
                 }
             },
-
+            reinit(){
+                this.$el.removeAttribute('onchange')
+                this.$nextTick(this.init)
+            },
             multi (context, vm) {
                 const siblings = [...vm.$el.previousSibling.getElementsByClassName('active')].map(i => {
                     return i.getElementsByTagName('label')[0].nextSibling.nodeValue
